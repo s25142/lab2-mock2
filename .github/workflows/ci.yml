@@ -37,7 +37,7 @@ jobs:
         
       - name: get file
         run: |
-           curl -H https://github.com/PJATK-ASI-2024/Lab-2_s25142/blob/main/generator_danych.py 
+           python3 https://github.com/PJATK-ASI-2024/Lab-2_s25142/blob/main/generator_danych.py -s 25142
         
         
        
