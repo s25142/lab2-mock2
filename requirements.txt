@@ -1,6 +1,5 @@
 requests
 pandas
-sklearn
 numpy
 logging
 scikit-learn
