@@ -1,1 +1,8 @@
 requests
+pandas
+sklearn
+numpy
+logging
+sklearn
+Faker
+argparse

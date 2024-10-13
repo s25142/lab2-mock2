@@ -1,6 +1,5 @@
 import requests
 
-
 def get_google_sheet(sheet_id, api_key, range_name):
     url = f'https://sheets.googleapis.com/v4/spreadsheets/{sheet_id}/values/{range_name}?key={api_key}'
     response = requests.get(url)

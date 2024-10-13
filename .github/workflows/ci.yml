@@ -35,4 +35,9 @@ jobs:
             RANGE_NAME: ${{ secrets.RANGE_NAME }}
         run: python fetch_data.py
         
+       - name: get file
+         run: |
+            curl -H https://github.com/PJATK-ASI-2024/Lab2---Obr-bka-danych.git/generator_danych.py 
+        
+        
        
