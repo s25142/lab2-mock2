@@ -34,10 +34,19 @@ jobs:
             SHEET_ID: ${{ secrets.SPREADSHEET_ID }}
             RANGE_NAME: ${{ secrets.RANGE_NAME }}
         run: python fetch_data.py
-        
-      - name: get file
+    
+  run-external-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Krok 1: Sprawdzenie repozytorium projektu (domyślnie to repozytorium, w którym jest uruchamiany GitHub Action)
+      - name: Checkout current repository
+        uses: actions/checkout@v3
+
+    # Krok 2: Pobranie skryptu z repozytorium Lab2---Obr-bka-danych
+      - name: Checkout external repository
         run: |
-           python3 https://github.com/PJATK-ASI-2024/Lab-2_s25142/blob/main/generator_danych.py -s 25142
-        
-        
-       
+            git clone https://github.com/username/Lab2---Obr-bka-danych.git external-repo
+            cd external-repo
+        # Tutaj możesz uruchomić skrypt z repozytorium, np. Python
+            python3 generator_danych.py -s 25142      
