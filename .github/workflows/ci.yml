@@ -33,7 +33,6 @@ jobs:
             GOOGLE_SHEETS_API_KEY: ${{ secrets.API_KEY }}
             SHEET_ID: ${{ secrets.SPREADSHEET_ID }}
             RANGE_NAME: ${{ secrets.RANGE }}
-        run: |
-        python fetch_data.py
+        run: python fetch_data.py
         
        
