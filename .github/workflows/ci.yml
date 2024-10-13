@@ -39,12 +39,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # Krok 1: Sprawdzenie repozytorium projektu (domyślnie to repozytorium, w którym jest uruchamiany GitHub Action)
       - name: Checkout current repository
         uses: actions/checkout@v3
 
       - name: Checkout external repository
         run:  gh repo clone PJATK-ASI-2024/Lab2---Obr-bka-danych
       
-      -name: generate data
-       run:  python3 generator_danych.py -s 25142      
+      - name: generate data
+        run:  python3 generator_danych.py -s 25142      
