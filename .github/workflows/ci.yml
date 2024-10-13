@@ -1,0 +1,39 @@
+# .github/workflows/ci.yml
+
+name: CI/CD Pipeline for data cleaning
+
+# Wykonuj akcje przy każdym pushu do gałęzi main
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  train-model:
+    runs-on: ubuntu-latest
+    
+    steps:
+       # Krok 1: Checkout repozytorium
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Krok 2: Zainstaluj Python i zależności
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          
+      - name: Import Google Sheet Data
+      env:
+        GOOGLE_SHEETS_API_KEY: ${{ secrets.API_KEY }}
+        SHEET_ID: ${{ secrets.SPREADSHEET_ID }}
+        RANGE_NAME: ${{ secrets.RANGE }}
+      run: |
+        python fetch_data.py
+        
+       
