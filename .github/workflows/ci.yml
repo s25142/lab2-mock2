@@ -44,6 +44,6 @@ jobs:
 
       - name: Checkout external repository
         run: |
-          git clone git@github.com:PJATK-ASI-2024/Lab2---Obr-bka-danych.git external-repo
+          git clone https://github.com/PJATK-ASI-2024/Lab2---Obr-bka-danych.git external-repo
           cd external-repo
           python3 generator_danych.py -s 25142 
