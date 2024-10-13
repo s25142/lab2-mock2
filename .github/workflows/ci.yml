@@ -43,7 +43,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Checkout external repository
-        run:  gh repo clone PJATK-ASI-2024/Lab2---Obr-bka-danych
+        run:  git clone https://github.com/PJATK-ASI-2024/Lab2---Obr-bka-danych.git
       
       - name: generate data
         run:  python3 generator_danych.py -s 25142      
