@@ -15,7 +15,7 @@ if __name__ == "__main__":
 
     SHEET_ID = os.getenv("SHEET_ID")
     RANGE_NAME = os.getenv("RANGE_NAME")
-    API_KEY = os.getenv("GOOGLE_SHEETS_API_KEY")
+    API_KEY = os.getenv("API_KEY")
 
     data = get_google_sheet(SHEET_ID, API_KEY, RANGE_NAME)
     print(data)
