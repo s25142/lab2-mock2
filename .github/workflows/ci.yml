@@ -43,10 +43,9 @@ jobs:
       - name: Checkout current repository
         uses: actions/checkout@v3
 
-    # Krok 2: Pobranie skryptu z repozytorium Lab2---Obr-bka-danych
       - name: Checkout external repository
         run: |
             git clone https://github.com/username/Lab2---Obr-bka-danych.git external-repo
             cd external-repo
-        # Tutaj możesz uruchomić skrypt z repozytorium, np. Python
+       
             python3 generator_danych.py -s 25142      
