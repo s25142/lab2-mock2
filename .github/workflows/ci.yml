@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  train-model:
+  get_google_sheet:
     runs-on: ubuntu-latest
     
     steps:
