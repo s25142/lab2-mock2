@@ -32,9 +32,22 @@ jobs:
           git clone https://$REPO_ACCESS_TOKEN@github.com/PJATK-ASI-2024/Lab2---Obr-bka-danych.git external-repo
           cd external-repo
           python3 generator_danych.py -s 25142
-
-      - name: display data
-        run: cat external-repo/data_student_25142.csv
+      - id: 'update_worksheet'
+      - name: update sheet
+        with:
+          spreadsheetId: ${{ secrets.SPREADSHEET_ID }}
+          commands: | # list of commands, specified as a valid JSON string
+            [
+              { "command": "getData", "args": { "range": "'data_student_25142'!A2:B3" } }
+            ]
+        env:
+          GSHEET_PRIVATE_KEY: ${{ secrets.API_KEY }}
+          
+      - name: dump results
+        env:
+          #  the output of the action can be found in ${{ steps.update_worksheet.outputs.results }}
+          RESULTS: ${{ steps.update_worksheet.outputs.results }}
+        run: echo "$RESULTS" | jq
           
 
   get_google_sheet:
