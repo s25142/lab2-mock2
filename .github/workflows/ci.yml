@@ -1,0 +1,86 @@
+# .github/workflows/ci.yml
+
+name: CI/CD Pipeline for data cleaning
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-external-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout current repository
+        uses: actions/checkout@v3
+        
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          
+      - name: Checkout external repository
+        env:
+          REPO_ACCESS_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+        run: |
+          git clone https://$REPO_ACCESS_TOKEN@github.com/PJATK-ASI-2024/Lab2---Obr-bka-danych.git external-repo
+          cd external-repo
+          python3 generator_danych.py -s 25142
+          cat data_student_25142.csv
+          
+  fetch_and_save_data:
+    runs-on: ubuntu-latest
+    
+    steps:
+       # Krok 1: Checkout repozytorium
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Krok 2: Zainstaluj Python i zależności
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          
+      - name: Import Google Sheet Data
+        env:
+            API_KEY: ${{ secrets.API_KEY }}
+            SHEET_ID: ${{ secrets.SPREADSHEET_ID }}
+            RANGE_NAME: ${{ secrets.RANGE_NAME }}
+        run: python fetch_data.py
+   
+  clean_data:
+      runs-on: ubuntu-latest
+<<<<<<< HEAD
+      
+      steps:
+        - name: Set up Python
+          uses: actions/setup-python@v2
+          with:
+            python-version: '3.x'
+        - name: Install dependencies
+          run: |
+            python -m pip install --upgrade pip
+            pip install -r requirements.txt
+            
+=======
+      steps:
+>>>>>>> 342e5659493bb9653f60515d348934eb19b83cea
+        - name: clean data
+          run: |
+            python clean_data.py
+            cat: log.txt
+          
+          
+      
