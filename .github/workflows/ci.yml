@@ -32,18 +32,7 @@ jobs:
           git clone https://$REPO_ACCESS_TOKEN@github.com/PJATK-ASI-2024/Lab2---Obr-bka-danych.git external-repo
           cd external-repo
           python3 generator_danych.py -s 25142
-        
-      - name: update sheet
-        with:
-          spreadsheetId: ${{ secrets.SPREADSHEET_ID }}
-          commands: | # list of commands, specified as a valid JSON string
-            [
-              { "command": "getData", "args": { "range": "'data_student_25142'!A2:B3" } }
-            ]
-        env:
-          GSHEET_PRIVATE_KEY: ${{ secrets.API_KEY }}
           
-
   get_google_sheet:
     runs-on: ubuntu-latest
     
