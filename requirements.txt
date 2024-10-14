@@ -1,7 +1,0 @@
-requests
-pandas
-numpy
-logging
-scikit-learn
-Faker
-argparse
